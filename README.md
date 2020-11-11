@@ -96,12 +96,30 @@ It is designed as a self-serve platform for operationalizing and maintaining app
 
 #### Installing devtron with Helm 
 
+## Helm 3
+
 ```bash
-$ git clone https://github.com/devtron-labs/devtron-installation-script.git
+$ git clone [https://github.com/devtron-labs/devtron-installation-script.git](https://github.com/devtron-labs/devtron-installation-script.git)
 $ cd devtron-installation-script/charts
+$ #Create devtroncd namespace
+$ kubectl create ns devtroncd
 $ #modify values in values.yaml
-$ helm install devtron . -f values.yaml
+$ helm install devtron devtron/ --namespace devtroncd -f values.yaml
 ```
+
+## Helm 2
+
+```bash
+$ git clone [https://github.com/devtron-labs/devtron-installation-script.git](https://github.com/devtron-labs/devtron-installation-script.git)
+$ cd devtron-installation-script/charts
+$ #Create CRDs manually when using Helm2
+$ kubectl apply -f https://raw.githubusercontent.com/devtron-labs/devtron-installation-script/main/charts/devtron/crds/crd-devtron.yaml
+$ #Create devtroncd namespace
+$ kubectl create ns devtroncd
+$ #modify values in values.yaml
+$ helm install devtron/ --name devtron --namespace devtroncd -f values.yaml
+```
+
 For detail instructions checkout [devtron installation project](https://github.com/devtron-labs/devtron-installation-script/)
 
 
